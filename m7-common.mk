@@ -40,11 +40,19 @@ PRODUCT_COPY_FILES += \
 
 # Recovery
 PRODUCT_PACKAGES += \
-    init.recovery.qcom.rc \
+    lpm.rc \
+    charger \
     choice_fn \
-    detect_key \
-    offmode_charging \
-    power_test
+    offmode_charging
+
+PRODUCT_PACKAGES += \
+    battery_0.png \
+    battery_1.png \
+    battery_2.png \
+    battery_3.png \
+    battery_4.png \
+    battery_fail.png \
+    battery_full.png
 
 # QC thermald config
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
@@ -117,7 +125,6 @@ PRODUCT_PACKAGES += \
 
 # Misc Packages
 PRODUCT_PACKAGES += \
-    DeviceSettings \
     Torch
 
 # Prepatch to fix BT/WiFi bus lockups
@@ -126,6 +133,8 @@ PRODUCT_COPY_FILES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
@@ -153,6 +162,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true \
     persist.gps.qmienabled=true \
     ro.baseband.arch=mdm \
+    ro.opengles.version=196608 \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000
 
