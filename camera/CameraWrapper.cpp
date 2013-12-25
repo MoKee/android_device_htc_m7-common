@@ -157,17 +157,14 @@ static char *camera_fixup_getparams(int id, const char *settings)
                 android::CameraParameters::SCENE_MODE_HDR);
     }
 
+    /* Set sensor parameters */
     if (id == 0) {
-        /* Set sensor parameters */
         params.set(android::CameraParameters::KEY_FOCAL_LENGTH, "3.82");
         params.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE, "69.6");
         params.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE, "43.0");
-
-        /* Set supported scene modes */
-        if (params.get(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES)) {
-            params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
-                    "off,auto,action,portrait,landscape,night,night-portrait,theatre,beach,snow,sunset,steadyphoto,fireworks,sports,party,candlelight,backlight,flowers,AR,text,hdr");
-        }
+    }
+    if (id == 1) {
+        params.set(android::CameraParameters::KEY_FOCAL_LENGTH, "1.59");
     }
 
 #if !LOG_NDEBUG
@@ -184,7 +181,6 @@ static char *camera_fixup_getparams(int id, const char *settings)
 static char *camera_fixup_setparams(int id, const char *settings)
 {
     bool isVideo = false;
-    const char *previewSize = "0x0";
     const char *sceneMode = "auto";
     const char *videoHdr = "false";
 
@@ -198,10 +194,6 @@ static char *camera_fixup_setparams(int id, const char *settings)
 
     if (params.get(android::CameraParameters::KEY_RECORDING_HINT)) {
         isVideo = !strcmp(params.get(android::CameraParameters::KEY_RECORDING_HINT), "true");
-    }
-
-    if (params.get(android::CameraParameters::KEY_PREVIEW_SIZE)) {
-        previewSize = params.get(android::CameraParameters::KEY_PREVIEW_SIZE);
     }
 
     if (params.get(android::CameraParameters::KEY_SCENE_MODE)) {
@@ -241,11 +233,9 @@ static char *camera_fixup_setparams(int id, const char *settings)
         }
     }
 
-    /* Fix 1080p video snapshot size */
-    if (isVideo) {
-        if (!strcmp(previewSize, "1920x1088")) {
-            params.set(android::CameraParameters::KEY_PICTURE_SIZE, "1920x1088");
-        }
+    if (isVideo && id == 1) {
+        /* Front camera only supports infinity */
+        params.set(android::CameraParameters::KEY_FOCUS_MODE, "infinity");
     }
 
 #if !LOG_NDEBUG
