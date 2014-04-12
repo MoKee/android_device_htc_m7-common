@@ -106,4 +106,3 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # inherit from the proprietary version
 -include vendor/htc/m7-common/BoardConfigVendor.mk
-
