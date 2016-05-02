@@ -78,10 +78,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
-# HTC symbols
-PRODUCT_PACKAGES += \
-    libhtc_symbols
-
 # IDC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/projector_input.idc:system/usr/idc/projector_input.idc \
@@ -97,6 +93,10 @@ PRODUCT_COPY_FILES += \
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8960
+
+# Log
+PRODUCT_PACKAGES += \
+    liblog_shim
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -120,6 +120,10 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
+# PowerHAL
+PRODUCT_PACKAGES += \
+    libqc-opt_shim
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -128,10 +132,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.target.rc \
     ueventd.qcom.rc
-
-# SSL compat
-PRODUCT_PACKAGES += \
-    libboringssl-compat
 
 # Thermal
 PRODUCT_COPY_FILES += \

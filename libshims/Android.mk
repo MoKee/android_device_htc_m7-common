@@ -1,4 +1,4 @@
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +13,24 @@
 # limitations under the License.
 
 LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := \
+    icu53.c
+
+LOCAL_SHARED_LIBRARIES := libicuuc libicui18n
+LOCAL_MODULE := libqc-opt_shim
+LOCAL_MODULE_TAGS := optional
+
+include $(BUILD_SHARED_LIBRARY)
+
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
     htc_log.c
 
-LOCAL_MODULE := libhtc_symbols
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE := liblog_shim
+LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)
