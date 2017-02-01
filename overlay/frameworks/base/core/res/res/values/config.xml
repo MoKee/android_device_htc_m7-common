@@ -105,7 +105,7 @@
 
     <!-- Default LED off time for notification LED in milliseconds. -->
     <!-- HTC: Not milliseconds. Match to a state value from
-         notification_pulse_length_values in CMParts -->
+         notification_pulse_length_values in MKParts -->
     <integer name="config_defaultNotificationLedOff">2</integer>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->

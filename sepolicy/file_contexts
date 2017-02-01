@@ -19,7 +19,7 @@
 /dev/ttyHSL2                    u:object_r:cir_device:s0
 /system/bin/cir_fw_update       u:object_r:cir_fw_update_exec:s0
 
-# CMHW
+# MKHW
 /sys/devices/virtual/timed_output/vibrator/voltage_level   u:object_r:vibeamp_sysfs:s0
 
 # Encryption
